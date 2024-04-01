@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Data Requisition Form</title>
+	<meta charset="utf-8">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<style>
+	/* Positioning the buttons */
+	.button-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.button-container button {
+		width: 150px;
+		/* Adjust width as needed */
+	}
+
+	/* Responsive iframe */
+	#resultExcel {
+		width: 100%;
+		height: 600px;
+		/* Adjust height as needed */
+	}
+</style>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header"><a class="logo" href="index.html">Home</a>
+		<nav><a href="#menu">Menu</a>
+		</nav>
+	</header><!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="abstract.html">Abstract</a></li>
+			<li><a href="overview.html">Overview</a></li>
+			<li><a href="project.html">Project</a></li>
+		</ul>
+	</nav><!-- Heading -->
+	<div id="heading">
+		<h1>DATA REQUISITION FORM</h1>
+	</div>
+
+	<section id="main" class="wrapper">
+		<div class="inner">
+			<form onsubmit="loadExcel(); return false;">
+				<label for="district">District Name:</label><br>
+				<input type="text" id="district" name="district" required><br>
+				<label for="mandal">Mandal Name:</label><br>
+				<input type="text" id="mandal" name="mandal" required><br>
+				<label for="village">Village Name:</label><br>
+				<input type="text" id="village" name="village" required><br>
+				<div class="button-container">
+					<button type="button" onclick="showImage();">Show Chart</button>
+					<input type="submit" value="Load Excel">
+				</div>
+			</form>
+		</div>
+		<!-- Placeholder for the result Excel -->
+		<iframe id="resultExcel" src="" frameborder="0"></iframe>
+	</section>
+
+	<script>
+		function showImage() {
+			// Retrieve values from the form
+			var district = document.getElementById("district").value;
+			var mandal = document.getElementById("mandal").value;
+			var village = document.getElementById("village").value;
+
+			// Check if any field is empty
+			if (district === "") {
+				alert("Please fill the District Name.");
+				return;
+			}
+			if (mandal === "") {
+				alert("Please fill the Mandal Name.");
+				return;
+			}
+			if (village === "") {
+				alert("Please fill the Village Name.");
+				return;
+			}
+
+			// Concatenate the image filename based on the user input
+			var imageName = district + "_" + mandal + "_" + village + ".jpg";
+
+			// Set the image source URL
+			var imageUrl = "images/" + imageName; // Assuming images are stored in a folder named "images"
+
+			// Display the image in iframe
+			document.getElementById("resultExcel").src = imageUrl;
+		}
+
+		function loadExcel() {
+			// Retrieve values from the form
+			var district = document.getElementById("district").value;
+			var mandal = document.getElementById("mandal").value;
+			var village = document.getElementById("village").value;
+
+			// Check if any field is empty
+			if (district === "") {
+				alert("Please fill the District Name.");
+				return;
+			}
+			if (mandal === "") {
+				alert("Please fill the Mandal Name.");
+				return;
+			}
+			if (village === "") {
+				alert("Please fill the Village Name.");
+				return;
+			}
+
+			// Concatenate the Excel filename based on the user input
+			var excelName = district + "_" + mandal + "_" + village + ".xlsx";
+
+			// Set the Excel file URL
+			var excelUrl = "images/" + excelName; // Update path to your folder
+
+			// Load the Excel file in iframe
+			document.getElementById("resultExcel").src = excelUrl;
+		}
+	</script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
